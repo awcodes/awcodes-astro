@@ -1,0 +1,38 @@
+---
+import Layout from "./Layout.astro";
+import Icon from './Icon.astro';
+
+const { content } = Astro.props;
+---
+
+<Layout title={content.title} description={content.description}>
+  <section class="flow">
+    <h1>{content.title}</h1>
+
+    <article class="work">
+      <section>
+        <picture>
+          <source media="(max-width: 960px)" srcset={`/images/medium/${content.featured_image}`} />
+          <source media="(max-width: 961px)" srcset={`/images/small/${content.featured_image}`} />
+          <source media="(max-width: 1024px)" srcset={`/images/${content.featured_image}`} />
+          <img src={`/images/${content.featured_image}`} alt={`screen shot of ${content.title}`} />
+        </picture>
+
+        <slot />
+      </section>
+
+      <aside>
+        <a href={content.url} class="has-icon" target="_blank" rel="noopener nofollow">
+          <Icon name="globe" />
+          <span>Visit Website</span>
+        </a>
+        {content.github && (
+        <a href={content.github} class="has-icon" target="_blank" rel="noopener nofollow">
+            <Icon name="github" />
+            <span>Source</span>
+        </a>
+      )}
+      </aside>
+    </article>
+  </section>
+</Layout>

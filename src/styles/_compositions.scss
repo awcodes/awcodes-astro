@@ -1,0 +1,58 @@
+@import "mixins";
+
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-placement, auto-fill), minmax(var(--grid-min-item-size, 17rem), 1fr));
+  gap: var(--gutter, var(--space-m));
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter, var(--space-s));
+  justify-content: var(--cluster-horizontal-alignment, flex-start);
+  align-items: var(--cluster-vertical-alignment, center);
+}
+
+article.work {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter, var(--space-m));
+
+  @media (min-width: 960px) {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  picture {
+    @include aspect-image;
+  }
+}
+
+[role="banner"] {
+  padding-block: var(--space-m);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: var(--space-m);
+
+  .logo {
+    color: var(--color-primary);
+
+    svg {
+      width: auto;
+      height: var(--space-xl);
+    }
+  }
+
+  nav[aria-label="primary"] {
+    [aria-current="page"] {
+      color: var(--color-primary);
+    }
+  }
+}
+
+[role="contentinfo"] {
+  margin-block-start: var(--space-m-2xl);
+  padding-block-end: var(--space-m);
+  font-size: var(--step--2);
+}

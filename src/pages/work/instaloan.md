@@ -1,0 +1,9 @@
+---
+layout: "../../components/WorkLayout.astro"
+title: "InstaLoan"
+description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vel obcaecati perferendis sapiente consequuntur, explicabo cumque dolore magni quibusdam ex itaque, nostrum quasi quod recusandae."
+featured_image: "instaloan.jpg"
+url: "https://www.instaloan.com"
+github: null
+order: 3
+---

@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+    work: object;
+}
+
+const { work } = Astro.props;
+---
+
+<div class="card">
+  <div class="card__cap">
+    <picture>
+      <source media="(max-width: 960px)" srcset={`/images/medium/${work.frontmatter.featured_image}`} />
+      <source media="(min-width: 961px)" srcset={`/images/small/${work.frontmatter.featured_image}`} />
+      <img src={`/images/${work.frontmatter.featured_image}`} alt={`screen shot of ${work.frontmatter.title}`} />
+    </picture>
+  </div>
+  <div class="card__content flow">
+    <h3 class="card__title">{work.frontmatter.title}</h3>
+    <p>{work.frontmatter.description}</p>
+    <div class="cluster" style="--gutter: var(--space-s)">
+      <a href={work.url} class="has-icon">
+        <Icon name="info" />
+        <span>Info</span>
+      </a>
+      <a href={work.frontmatter.url} class="has-icon" target="_blank" rel="noopener nofollow">
+        <Icon name="globe" />
+        <span>Visit Website</span>
+      </a>
+      {work.frontmatter.github && (
+        <a href={work.frontmatter.github} class="has-icon" target="_blank" rel="noopener nofollow">
+            <Icon name="github" />
+            <span>Source</span>
+        </a>
+      )}
+    </div>
+  </div>
+</div>

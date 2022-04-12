@@ -1,0 +1,12 @@
+@mixin aspect-image {
+  aspect-ratio: 16/9;
+  margin-block-end: var(--space-s);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: solid 1px var(--color-dark-glare);
+
+  img {
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+}

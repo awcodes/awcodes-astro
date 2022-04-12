@@ -1,0 +1,9 @@
+---
+layout: "../../components/WorkLayout.astro"
+title: "TitleMax"
+description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos vel obcaecati perferendis sapiente consequuntur, explicabo cumque dolore magni quibusdam ex itaque, nostrum quasi quod recusandae."
+featured_image: "titlemax.jpg"
+url: "https://www.titlemax.com"
+github: null
+order: 1
+---

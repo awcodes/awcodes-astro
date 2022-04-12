@@ -1,0 +1,75 @@
+---
+export interface Props {
+    title: string;
+    pages?: [];
+}
+
+export const { title, pages = [] } = Astro.props;
+---
+
+{pages.length > 1 && (
+<nav aria-label="pagination-title" class="pagination">
+  <h2 id="pagination-title" class="visually-hidden">{ title }</h2>
+  <ol class="cluster" role="list">
+    <li>
+        {% if page.url != pagination.href.first %}
+        <a href="{{ pagination.href.first }}">
+            {% include 'svg/chevron-double-left.svg' %}
+            <span class="visually-hidden">First</span>
+        </a>
+        {% else %}
+        <span>
+            {% include 'svg/chevron-double-left.svg' %}
+            <span class="visually-hidden">First</span>
+        </span>
+        {% endif %}
+    </li>
+    <li>
+        {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">
+            {% include 'svg/chevron-left.svg' %}
+            <span class="visually-hidden">Previous</span>
+        </a>
+        {% else %}
+        <span>
+            {% include 'svg/chevron-left.svg' %}
+            <span class="visually-hidden">Previous</span>
+        </span>
+        {% endif %}
+    </li>
+    {%- for pageEntry in pagination.pages %}
+        <li>
+            <a href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>
+                Page {{ loop.index }}
+            </a>
+        </li>
+    {%- endfor %}
+    <li>
+        {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">
+            {% include 'svg/chevron-right.svg' %}
+            <span class="visually-hidden">Next</span>
+        </a>
+        {% else %}
+        <span>
+            {% include 'svg/chevron-right.svg' %}
+            <span class="visually-hidden">Next</span>
+        </span>
+        {% endif %}
+    </li>
+    <li>
+        {% if page.url != pagination.href.last %}
+        <a href="{{ pagination.href.last }}">
+            {% include 'svg/chevron-double-right.svg' %}
+            <span class="visually-hidden">last</span>
+        </a>
+        {% else %}
+        <span>
+            {% include 'svg/chevron-double-right.svg' %}
+            <span class="visually-hidden">Last</span>
+        </span>
+        {% endif %}
+    </li>
+  </ol>
+</nav>
+)}
