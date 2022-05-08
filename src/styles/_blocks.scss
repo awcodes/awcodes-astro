@@ -15,46 +15,6 @@
   border-radius: 9999px;
 }
 
-form.contact {
-  max-width: 48rem;
-  margin-inline: auto;
-}
-
-label {
-  display: block;
-  font-size: var(--step--1);
-  margin-block-end: 4px;
-}
-
-input,
-textarea {
-  border-radius: var(--radius);
-  background-color: var(--color-dark-glare);
-  border: none;
-  color: var(--color-light);
-  padding: var(--space-2xs);
-  width: 100%;
-}
-
-textarea {
-  min-height: 10rem;
-}
-
-button {
-  padding-inline: var(--space-s);
-  padding-block: var(--space-2xs);
-  background-color: var(--color-primary);
-  color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: var(--radius);
-
-  &:hover,
-  &:focus {
-    background-color: var(--color-primary-dark);
-  }
-}
-
 .pagination {
   svg {
     width: 1.2em;

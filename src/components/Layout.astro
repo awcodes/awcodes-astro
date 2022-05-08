@@ -1,6 +1,7 @@
 ---
 import '../styles/style.scss';
 import Logo from '../components/Logo.astro';
+import Icon from './Icon.astro';
 
 export interface Props {
   title?: string;
@@ -44,7 +45,22 @@ const url = new URL(Astro.request.url);
               <a href="/blog/" aria-current={ url.pathname.includes('/blog/') ? 'page' : false }>Blog</a>
             </li>
             <li>
-              <a href="/contact/" aria-current={ url.pathname.includes('/contact/') ? 'page' : false }>Contact</a>
+              <a href="https://github.com/awcodes">
+                <Icon name="github" />
+                <span class="sr-only">Github</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/awcodes1">
+                <Icon name="twitter" />
+                <span class="sr-only">Twitter</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/awcodes/">
+                <Icon name="linkedin" />
+                <span class="sr-only">LinkedIn</span>
+              </a>
             </li>
           </ul>
         </nav>
