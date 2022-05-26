@@ -20,18 +20,18 @@ const { work } = Astro.props;
     <h3 class="card__title">{work.frontmatter.title}</h3>
     <p>{work.frontmatter.description}</p>
     <div class="cluster" style="--gutter: var(--space-s)">
-      <a href={work.url} class="has-icon">
+      <a href={`${work.url}/`} class="has-icon">
         <Icon name="info" />
-        <span>Info</span>
+        <span>Info</span> <span class="sr-only">about {work.frontmatter.title}</span>
       </a>
       <a href={work.frontmatter.url} class="has-icon" target="_blank" rel="noopener nofollow">
         <Icon name="globe" />
-        <span>Visit Website</span>
+        <span>Visit Website</span> <span class="sr-only">for {work.frontmatter.title}</span>
       </a>
       {work.frontmatter.github && (
         <a href={work.frontmatter.github} class="has-icon" target="_blank" rel="noopener nofollow">
             <Icon name="github" />
-            <span>Source</span>
+            <span>Source</span> <span class="sr-only">code for {work.frontmatter.title}</span>
         </a>
       )}
     </div>

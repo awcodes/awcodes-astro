@@ -45,8 +45,19 @@ article.work {
   }
 
   nav[aria-label="primary"] {
+    a {
+      text-decoration: none;
+      font-family: "Fira Sans";
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+
     [aria-current="page"] {
       color: var(--color-primary);
+      text-decoration: underline;
     }
   }
 }

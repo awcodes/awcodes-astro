@@ -62,9 +62,11 @@ const featuredWork = await Astro.glob("./work/*.md").then(res => {
     <section class="flow">
       <h2>Some of My Work</h2>
       <ul role="list" class="auto-grid">
-      {featuredWork.slice(0,3).map((work) => (
-        <WorkCard work={work} />
-      ))}
+        {featuredWork.slice(0,3).map((work) => (
+            <li>
+              <WorkCard work={work} />
+            </li>
+          ))}
       </ul>
       <p>
         <a href="/work/">View all work</a>

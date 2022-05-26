@@ -31,7 +31,7 @@ const url = new URL(Astro.request.url);
     <div class="wrapper">
       <header role="banner">
         <a href="/">
-          <div class="logo"><Logo class="h-full w-auto" /></div>
+          <div class="logo"><Logo class="h-full w-auto" /><span class="sr-only">Home page</span></div>
         </a>
         <nav aria-label="primary">
           <ul class="cluster" role="list">
@@ -45,19 +45,19 @@ const url = new URL(Astro.request.url);
               <a href="/blog/" aria-current={ url.pathname.includes('/blog/') ? 'page' : false }>Blog</a>
             </li>
             <li>
-              <a href="https://github.com/awcodes">
+              <a href="https://github.com/awcodes" target="_blank">
                 <Icon name="github" />
                 <span class="sr-only">Github</span>
               </a>
             </li>
             <li>
-              <a href="https://twitter.com/awcodes1">
+              <a href="https://twitter.com/awcodes1" target="_blank">
                 <Icon name="twitter" />
                 <span class="sr-only">Twitter</span>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/awcodes/">
+              <a href="https://www.linkedin.com/in/awcodes/" target="_blank">
                 <Icon name="linkedin" />
                 <span class="sr-only">LinkedIn</span>
               </a>
