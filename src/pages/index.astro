@@ -1,76 +1,85 @@
 ---
 import Layout from "../components/Layout.astro";
+import Pill from "../components/Pill.astro";
 import WorkCard from '../components/WorkCard.astro';
 
-const featuredWork = await Astro.glob("./work/*.md").then(res => {
+const allWork = await Astro.glob("./work/**/*.mdx").then(res => {
   return res.sort((a,b) => Math.sign(a.frontmatter.order - b.frontmatter.order));
 });
+
+const featuredWork = allWork.filter(work => work.frontmatter.featured);
 ---
 
 <Layout title="Welcome" description="I'm Adam and I just so happen to develop things for the web.">
-  <section class="flow">
+  <section>
     <h1>Welcome to my little corner of the interwebs.</h1>
-    <p>I'm Adam and I just so happen to develop things for the web, but you probably know that. I can't imagine any other reason you'd be looking at my site.</p>
+    <p class="text-lg md:text-2xl mt-2">I'm Adam and I just so happen to develop things for the web, but you probably know that. I can't imagine any other reason you'd be looking at my site.</p>
   </section>
 
-  <section class="flow">
+  <section class="mt-16">
     <h2>Tech I use and experiment with</h2>
-    <ul role="list" class="cluster" style="--gutter: var(--space-xs)">
+    <ul role="list" class="flex items-center flex-wrap gap-2">
       <li>
-        <div class="pill">HTML</div>
+        <Pill>HTML</Pill>
       </li>
       <li>
-        <div class="pill">CSS</div>
+        <Pill>CSS</Pill>
       </li>
       <li>
-        <div class="pill">JavaScript</div>
+        <Pill>JavaScript</Pill>
       </li>
       <li>
-        <div class="pill">PHP</div>
+        <Pill>PHP</Pill>
       </li>
       <li>
-        <div class="pill">MySQL</div>
+        <Pill>MySQL</Pill>
       </li>
       <li>
-        <div class="pill">Laravel</div>
+        <Pill>Laravel</Pill>
       </li>
       <li>
-        <div class="pill">Tailwind CSS</div>
+        <Pill>Filament</Pill>
       </li>
       <li>
-        <div class="pill">Alpine.js</div>
+        <Pill>Tailwind CSS</Pill>
       </li>
       <li>
-        <div class="pill">11ty</div>
+        <Pill>Alpine.js</Pill>
       </li>
       <li>
-        <div class="pill">Astro</div>
+        <Pill>11ty</Pill>
       </li>
       <li>
-        <div class="pill">React</div>
+        <Pill>Astro</Pill>
       </li>
       <li>
-        <div class="pill">Vue</div>
+        <Pill>React</Pill>
       </li>
       <li>
-        <div class="pill">WordPress</div>
+        <Pill>Vue</Pill>
+      </li>
+      <li>
+        <Pill>WordPress</Pill>
       </li>
     </ul>
   </section>
 
   {featuredWork.length > 0 && (
-    <section class="flow">
-      <h2>Some of My Work</h2>
-      <ul role="list" class="auto-grid">
+    <section class="mt-16">
+      <div class="flex items-center justify-between">
+        <h2 class="mb-0">Some of My Work</h2>
+        <p class="mb-0">
+          <a href="/work/">View all work</a>
+        </p>
+      </div>
+      <ul role="list" class="grid gap-x-6 gap-y-12 md:grid-cols-3">
         {featuredWork.slice(0,3).map((work) => (
             <li>
               <WorkCard work={work} />
             </li>
           ))}
       </ul>
-      <p>
-        <a href="/work/">View all work</a>
-      </p>
+
     </section>
   )}
 </Layout>

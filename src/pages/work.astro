@@ -2,16 +2,16 @@
 import Layout from "../components/Layout.astro";
 import WorkCard from "../components/WorkCard.astro";
 
-const allWork = await Astro.glob("./work/*.md").then(res => {
+const allWork = await Astro.glob("./work/**/*.mdx").then(res => {
   return res.sort((a,b) => Math.sign(a.frontmatter.order - b.frontmatter.order));
 });
 ---
 
 <Layout title="Work" description="">
-  <section class="flow">
+  <section>
     <h1>Things I've coded... <small>and sometimes designed</small></h1>
 
-    <ul role="list" class="auto-grid">
+    <ul role="list" class="grid gap-x-6 gap-y-12 md:grid-cols-3">
       {allWork.map(item => (
           <WorkCard work={item} />
       ))}

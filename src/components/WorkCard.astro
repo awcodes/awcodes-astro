@@ -1,37 +1,37 @@
 ---
-import Icon from './Icon.astro';
+import {Picture} from '@astrojs/image/components';
 
 export interface Props {
     work: object;
 }
 
 const { work } = Astro.props;
+const featuredImage = await import(`${work.frontmatter.featured_image}`);
+console.log(featuredImage);
 ---
 
 <div class="card">
-  <div class="card__cap">
-    <picture>
-      <source media="(max-width: 960px)" srcset={`/images/medium/${work.frontmatter.featured_image}`} />
-      <source media="(min-width: 961px)" srcset={`/images/small/${work.frontmatter.featured_image}`} />
-      <img src={`/images/${work.frontmatter.featured_image}`} alt={`screen shot of ${work.frontmatter.title}`} />
-    </picture>
+  <div class="aspect-video rounded overflow-hidden border border-gray-700 bg-gray-900">
+    <Picture src={featuredImage} alt={`screen shot of ${work.frontmatter.title}`} sizes="(max-width: 960px), (min-width: 961px)" widths={[360, 640]} aspectRatio="16:9" />
   </div>
-  <div class="card__content flow">
-    <h3 class="card__title">{work.frontmatter.title}</h3>
-    <p>{work.frontmatter.description}</p>
-    <div class="cluster" style="--gutter: var(--space-s)">
-      <a href={`${work.url}/`} class="has-icon">
-        <Icon name="info" />
-        <span>Info</span> <span class="sr-only">about {work.frontmatter.title}</span>
+  <div>
+    <h3 class="mb-0">{work.frontmatter.title}</h3>
+    <p class="mt-2">{work.frontmatter.description}</p>
+    <div class="flex items-center gap-4 flex-wrap">
+      <a href={`${work.url}/`}>
+        <span>About</span>
+        <span class="sr-only">{work.frontmatter.title}</span>
       </a>
-      <a href={work.frontmatter.url} class="has-icon" target="_blank" rel="noopener nofollow">
-        <Icon name="globe" />
-        <span>Visit Website</span> <span class="sr-only">for {work.frontmatter.title}</span>
+      {work.frontmatter.url && (
+      <a href={work.frontmatter.url} target="_blank" rel="noopener nofollow">
+        <span>Visit Website</span>
+        <span class="sr-only">for {work.frontmatter.title}</span>
       </a>
+      )}
       {work.frontmatter.github && (
-        <a href={work.frontmatter.github} class="has-icon" target="_blank" rel="noopener nofollow">
-            <Icon name="github" />
-            <span>Source</span> <span class="sr-only">code for {work.frontmatter.title}</span>
+        <a href={work.frontmatter.github} target="_blank" rel="noopener nofollow">
+            <span>Source Dive</span>
+            <span class="sr-only">code for {work.frontmatter.title}</span>
         </a>
       )}
     </div>

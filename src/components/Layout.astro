@@ -1,5 +1,5 @@
 ---
-import '../styles/style.scss';
+import '../styles/app.css';
 import Logo from '../components/Logo.astro';
 import Icon from './Icon.astro';
 
@@ -27,50 +27,60 @@ const url = new URL(Astro.request.url);
     )}
   </head>
 
-  <body>
-    <div class="wrapper">
-      <header role="banner">
-        <a href="/">
-          <div class="logo"><Logo class="h-full w-auto" /><span class="sr-only">Home page</span></div>
+  <body class="font-sans bg-gray-500 text-white-500 px-6">
+
+      <a href="#site-content" class="sr-only focus:not-sr-only">Skip to main content</a>
+
+      <header id="site-header" class="md:flex items-center justify-between py-4 max-w-5xl mx-auto mb-12">
+        <a href="/" class="block flex-shrink-0">
+          <Logo class="h-12 w-auto text-primary-500" /><span class="sr-only">Home page</span>
         </a>
-        <nav aria-label="primary">
-          <ul class="cluster" role="list">
-            <li>
-              <a href="/" aria-current={ url.pathname == '/' ? 'page' : false }>Home</a>
-            </li>
-            <li>
-              <a href="/work/" aria-current={ url.pathname.includes('/work/') ? 'page' : false }>Work</a>
-            </li>
-            <li>
-              <a href="/blog/" aria-current={ url.pathname.includes('/blog/') ? 'page' : false }>Blog</a>
-            </li>
-            <li>
-              <a href="https://github.com/awcodes" target="_blank">
-                <Icon name="github" />
-                <span class="sr-only">Github</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://twitter.com/awcodes1" target="_blank">
-                <Icon name="twitter" />
-                <span class="sr-only">Twitter</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/awcodes/" target="_blank">
-                <Icon name="linkedin" />
-                <span class="sr-only">LinkedIn</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div class="flex items-center justify-between gap-8 mt-4 md:mt-0">
+          <nav aria-label="primary">
+            <ul role="list" class="flex items-center gap-6 md:gap-8">
+              <li>
+                <a href="/" aria-current={ url.pathname == '/' ? 'page' : false }>Home</a>
+              </li>
+              <li>
+                <a href="/work/" aria-current={ url.pathname.includes('/work/') ? 'page' : false }>Work</a>
+              </li>
+              <li>
+                <a href="/blog/" aria-current={ url.pathname.includes('/blog/') ? 'page' : false }>Blog</a>
+              </li>
+            </ul>
+          </nav>
+          <nav aria-label="ways to contact me">
+            <ul role="list" class="flex items-center gap-4 md:gap-8">
+              <li>
+                <a href="https://github.com/awcodes" target="_blank" rel="noopener nofollow">
+                  <Icon name="github" classes="h-6 w-6" />
+                  <span class="sr-only">Github</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/awcodes1" target="_blank" rel="noopener nofollow">
+                  <Icon name="twitter" classes="h-6 w-6" />
+                  <span class="sr-only">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/awcodes/" target="_blank" rel="noopener nofollow">
+                  <Icon name="linkedin" classes="h-6 w-6" />
+                  <span class="sr-only">LinkedIn</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
-      <main role="main">
+
+      <main id="site-content" class="mx-auto max-w-5xl">
         <slot />
       </main>
-      <footer role="contentinfo">
+
+      <footer id="site-footer" class="text-xs text-center mt-12 pb-8 mx-auto max-w-5xl">
         <p>&copy; { today.getFullYear() !== 2021 ? `2021 - ${today.getFullYear()}` : '2021' }. All the rights are belonging to me.</p>
       </footer>
-    </div>
+
   </body>
 </html>
