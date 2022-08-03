@@ -1,9 +1,8 @@
 ---
 import Layout from "./Layout.astro";
-import { Picture } from '@astrojs/image/components';
+import { Picture } from "astro-imagetools/components";
 
 const { content } = Astro.props;
-const featuredImage = new URL(`${content.featured_image}`, Astro.url).href;
 ---
 
 <Layout title={content.title} description={content.description}>
@@ -13,7 +12,12 @@ const featuredImage = new URL(`${content.featured_image}`, Astro.url).href;
     <article class="mt-4">
       <section>
         <div class="aspect-video rounded overflow-hidden border border-gray-700 bg-gray-900">
-          <Picture src={featuredImage} alt={`screen shot of ${content.title}`} sizes="(max-width: 639px) 360, (max-width: 768px) 640, 960" widths={[360, 640, 960]} aspectRatio="16:9" />
+          <Picture
+            src={content.featured_image}
+            alt={`screen shot of ${content.title}`}
+            sizes="(max-width: 639px) 360px, (max-width: 960px) 640px, 100vw"
+            aspect={1.77777778}
+          />
         </div>
         <slot />
       </section>

@@ -2,8 +2,7 @@ import { defineConfig } from "astro/config";
 import preact from "@astrojs/preact";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
-
-import image from "@astrojs/image";
+import { astroImageTools } from "astro-imagetools";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,6 +14,6 @@ export default defineConfig({
       },
     }),
     mdx(),
-    image(),
+    astroImageTools,
   ],
 });

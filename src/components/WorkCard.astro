@@ -1,17 +1,21 @@
 ---
-import {Picture} from '@astrojs/image/components';
+import { Picture } from "astro-imagetools/components";
 
 export interface Props {
     work: object;
 }
 
 const { work } = Astro.props;
-const featuredImage = new URL(`${work.frontmatter.featured_image}`, Astro.url).href;
 ---
 
 <div class="card">
   <div class="aspect-video rounded overflow-hidden border border-gray-700 bg-gray-900">
-    <Picture src={featuredImage} alt={`screen shot of ${work.frontmatter.title}`} sizes="(max-width: 960px), (min-width: 961px)" widths={[360, 640]} aspectRatio="16:9" />
+    <Picture
+      src={work.frontmatter.featured_image}
+      alt={`screen shot of ${work.frontmatter.title}`}
+      sizes="(max-width: 639px) 360px, 640px"
+      aspect={1.77777778}
+    />
   </div>
   <div>
     <h3 class="mb-0">{work.frontmatter.title}</h3>
