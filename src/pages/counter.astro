@@ -1,0 +1,18 @@
+---
+import Layout from "../components/Layout.astro";
+import Counter from "../components/Counter.tsx";
+
+const allWork = await Astro.glob("./work/**/*.mdx").then(res => {
+  return res.sort((a,b) => Math.sign(a.frontmatter.order - b.frontmatter.order));
+});
+
+const featuredWork = allWork.filter(work => work.frontmatter.featured);
+---
+
+<Layout title="Preact Counter" description="" robots="noindex,nofollow">
+    <div class="flex justify-center">
+        <Counter client:visible>
+            <h1>Hello, Preact!</h1>
+        </Counter>
+    </div>
+</Layout>

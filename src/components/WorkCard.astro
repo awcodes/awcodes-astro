@@ -6,8 +6,7 @@ export interface Props {
 }
 
 const { work } = Astro.props;
-const featuredImage = await import(`${work.frontmatter.featured_image}`);
-console.log(featuredImage);
+const featuredImage = new URL(`${work.frontmatter.featured_image}`, Astro.url).href;
 ---
 
 <div class="card">

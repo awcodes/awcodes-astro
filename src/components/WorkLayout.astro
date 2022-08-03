@@ -3,8 +3,7 @@ import Layout from "./Layout.astro";
 import { Picture } from '@astrojs/image/components';
 
 const { content } = Astro.props;
-const featuredImage = await import(`${content.featured_image}`);
-console.log(featuredImage);
+const featuredImage = new URL(`${content.featured_image}`, Astro.url).href;
 ---
 
 <Layout title={content.title} description={content.description}>
